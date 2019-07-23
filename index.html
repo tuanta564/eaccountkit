@@ -13,6 +13,19 @@
 </form>
 <script src="https://sdk.accountkit.com/vi_VN/sdk.js"></script>
 <script>
+    AccountKit_OnInteractive = function () {
+        AccountKit.init(
+            {
+                appId: 217388595839409,
+                state: new Date().getTime(), // This should be your XSRF_TOKEN
+                version: "v1.1",
+                // display: "modal",
+                debug: true,  // Helps in understanding what went wrong.
+                fbAppEventsEnabled: true
+            }
+        );
+        alert('abc');
+    };
     // awaitPostMessage() This is needed as window.postMessage is not working gracefully for android
     function awaitPostMessage() {
         var isReactNativePostMessageReady = !!window.originalPostMessage;
@@ -75,23 +88,7 @@
                 }
             }
         );
-    }
-    window.AccountKit_OnInteractive = function () {
-        alert("hello");
-    }
-    // AccountKit_OnInteractive = function () {
-    //     AccountKit.init(
-    //         {
-    //             appId: 217388595839409,
-    //             state: new Date().getTime(), // This should be your XSRF_TOKEN
-    //             version: "v1.1",
-    //             // display: "modal",
-    //             debug: true,  // Helps in understanding what went wrong.
-    //             fbAppEventsEnabled: true
-    //         }
-    //     );
-    //
-    // };
+    }    
     setTimeout(loadAccountKit,1000);
     function loginSMS() {
         AccountKit.login('PHONE', {},
